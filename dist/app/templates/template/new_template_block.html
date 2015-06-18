@@ -1,0 +1,86 @@
+<div ng-controller="templatesController"> 
+  <error-display></error-display>
+  <form action="" name="templateBlockForm">
+    <ul class="list-group" ng-repeat="templateBlock in templateBlocks track by $index">
+      <li class="list-group-item">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="input-group input-group-sm">
+                  <span class="input-group-addon">Package &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  <input type="text" class="form-control testcase-input" placeholder="templateBlock package" ng-model="templateBlock.package" ng-pattern="validatorRegEx().packageType">
+                </div><!-- /input-group -->
+              </div>
+
+              <div class="col-md-2">
+                <new-block-button tooltip="new template package" func="newTemplateBlock"></new-block-button>
+
+                <block-button tooltip="delete template package" func="deleteTemplateBlock" block="templateBlock" type="blockButtons.delete.class"></block-button>
+
+                <block-button tooltip="copy template package" func="copyTemplateBlock" block="templateBlock" type="blockButtons.copy.class"></block-button>
+
+                <block-button tooltip="un-fold template package" func="unfoldTemplateBlock" block="templateBlock" type="blockButtons.unfold.class" ng-hide="templateBlock.showDetail"></block-button>
+
+                <block-button tooltip="fold template package" func="foldTemplateBlock" block="templateBlock" type="blockButtons.fold.class" ng-show="templateBlock.showDetail"></block-button>
+
+                <block-button tooltip="save template package" func="saveTemplateBlock" block="templateBlock" type="blockButtons.save.class"></block-button>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-body" ng-show="templateBlock.showDetail">
+            <div ng-repeat="templteMessage in templateBlock.templates track by $index">
+              <!-- start of a template -->
+              <div class="row">
+                <div class="col-md-9"><DE></DE>
+                  <div class="col-md-4">
+                    <div class="input-group input-group-sm">
+                      <span class="input-group-addon">template id</span>
+                      <input type="text" class="form-control testcase-input" placeholder="templteMessage id" ng-model="templteMessage.id">
+                    </div><!-- /input-group -->
+                  </div>
+                  <div class="col-md-3">
+                    <new-block-item-button block="templateBlock" func="newTemplate" tooltip="new template"></new-block-item-button>
+
+                    <block-item-button func="deleteTemplate" block="templateBlock" item="$index" type="blockButtons.delete.class" tooltip="delete template"></block-item-button>
+
+                    <block-item-button func="copyTemplate" block="templateBlock" item="$index" type="blockButtons.copy.class" tooltip="copy template"></block-item-button>
+
+                    <block-item-button func="unfoldTemplate" block="templateBlock" item="$index" type="blockButtons.unfold.class" tooltip="un-fold template" ng-hide="templteMessage.showDetail"></block-item-button>
+
+                    <block-item-button func="foldTemplate" block="templateBlock" item="$index" type="blockButtons.fold.class" tooltip="fold template" ng-show="templteMessage.showDetail"></block-item-button>
+
+                    <block-item-button func="saveTemplate" block="templateBlock" item="$index" type="blockButtons.save.class" tooltip="save template"></block-item-button>
+
+                  </div>
+                  <table class="table table-striped" ng-show="templteMessage.showDetail">
+                    <thead>
+                      <th style="width:10%"></th>
+                      <th style="width:40%"></th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>message header</td>
+                        <td>
+                          <textarea class="form-control testcase-input" name="name" rows="5" cols="45" ng-model="templteMessage.message.header" ng-pattern="validatorRegEx().parameter"></textarea>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>message body</td>
+                        <td parameter="templteMessage.message.body" phase-name="">
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- end of a template -->
+            </div>
+          </div>
+        </div>
+      </li> <!-- end of a stepBlock -->
+    </ul>
+  </form>
+</div>

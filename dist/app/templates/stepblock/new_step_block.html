@@ -1,0 +1,11 @@
+<div ng-controller="stepBlockController">
+  <error-display></error-display>
+  <form action="" name="stepBlockForm">
+    <ul class="list-group" ng-repeat="stepBlock in stepBlocks track by $index">
+      <li class="list-group-item">
+        <step-block-header></step-block-header>
+        <step-block-body></step-block-body>
+      </li> <!-- end of a stepBlock -->
+    </ul>
+  </form>
+</div>

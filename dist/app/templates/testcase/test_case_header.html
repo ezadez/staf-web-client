@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="input-group input-group-sm">
+      <span class="input-group-addon">Package</span>
+      <input type="text" class="form-control testcase-input" placeholder="testCase package" ng-model="testCase.package">
+    </div><!-- /input-group -->
+  </div>
+  <div class="col-md-3">
+    <div class="input-group input-group-sm">
+      <span class="input-group-addon">TestCase ID</span>
+      <input type="text" class="form-control testcase-input" ng-model="testCase.id" placeholder="testCase id" ng-pattern="validatorRegEx().allowUnderbarAndDot" ng-required="true">
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+  <div class="col-md-4">
+    <div class="input-group input-group-sm">
+      <span class="input-group-addon">Assertion</span>
+      <input type="text" class="form-control testcase-input" placeholder="assertion (*optional)" ng-model="testCase.assertion" >
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+  <div class="col-md-2">
+    <button type="button" class="btn btn-link btn-xs" ng-click="newTestCase()">
+      <span class="fa fa-plus" tooltip="new TestCase"></span>
+    </button>
+    <button type="button" class="btn btn-link btn-xs" ng-click="deleteTestCase(testCase)">
+      <span class="fa fa-minus" tooltip="delete TestCase"></span>
+    </button>
+    <button type="button" class="btn btn-link btn-xs" ng-click="copyTestCase(testCase)">
+      <span class="fa fa-copy" tooltip="copy TestCase"></span>
+    </button>
+    <button type="button" class="btn btn-link btn-xs" ng-hide="testCase.showDetail" ng-click="unfoldTestCase(testCase)">
+      <span class="fa fa-folder-o" tooltip="un-fold TestCase"></span>
+    </button>
+    <button type="button" class="btn btn-link btn-xs" ng-show="testCase.showDetail" ng-click="foldTestCase(testCase)">
+      <span class="fa fa-folder-open-o" tooltip="fold TestCase"></span>
+    </button>
+    <button type="button" class="btn btn-link btn-xs" ng-click="saveTestCase()">
+      <span class="fa fa-save" tooltip="save TestCase"></span>
+    </button>
+  </div>
+</div>

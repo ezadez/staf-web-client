@@ -1,0 +1,22 @@
+<tr ng-repeat="phase in testStage.Phases track by $index">
+  <td>{{phase.name}}</td>
+  <td>
+    <ul class="list-group" ng-repeat="stepBlock in phase.stepBlocks track by $index" ng-if="stepBlock.id">
+      <li class="list-group-item">
+        <span>{{stepBlock.id}}</span>
+        <button type="button" class="btn btn-link btn-xs" ng-click="viewPhaseStepBlock()"><span class="fa fa-eye" tooltip="view stepBlock"></span></button>
+        <button type="button" class="btn btn-link btn-xs" ng-click="editPhaseStepBlock()"><span class="fa fa-edit" tooltip="edit stepBlock"></span></button>
+        <button type="button" class="btn btn-link btn-xs"><span class="fa fa-remove" tooltip="remove stepBlock" ng-click="removePhaseStepBlock(phase.stepBlocks, stepBlock)"></span></button>
+        <!-- //TODO not page out, move stepBlock tab -->
+        <button type="button" class="btn btn-link btn-xs" ng-show="stepBlock.notExist" ng-click="moveToNewStepBlock()"><span class="fa fa-warning" tooltip="not exist step block, need to create it"></span></button>
+
+      </li>
+    </ul>
+    <input type="text" class="form-control testcase-input" placeholder="{{phase.name}} StepBlocks" ng-keypress="addStepBlockByEnterKey($event, phase.stepBlocks)" ng-model="asyncSelected" typeahead="stepBlockId for stepBlockId in getStepBlockIds($viewValue) | filter:$viewValue">
+  </td>
+  <td parameter="phase.parameter" phase-name="phase.name">
+  </td>
+  <td rowspan="3" ng-show="$first">
+    <textarea rows="8" cols="20" class="form-control testcase-input" placeholder="Stage parameter" ng-model="testStage.parameter" ng-pattern="validatorRegEx().parameter"></textarea>
+  </td>
+</tr>

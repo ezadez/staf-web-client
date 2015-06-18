@@ -1,0 +1,105 @@
+<div ng-controller="usersController">
+  <error-display></error-display>
+  <form action="" name="userBlockForm">
+    <ul class="list-group" ng-repeat="userBlock in userBlocks track by $index">
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="input-group input-group-sm">
+              <span class="input-group-addon">Package</span>
+              <input type="text" class="form-control testcase-input" placeholder="userblock package" ng-model="userBlock.package">
+            </div><!-- /input-group -->
+          </div>
+          <div class="col-md-2">
+            <div class="input-group input-group-sm">
+              <span class="input-group-addon">Id</span>
+              <input type="text" class="form-control testcase-input" placeholder="userblock id" ng-model="userBlock.id">
+            </div><!-- /input-group -->
+          </div>
+          <div class="col-md-2">
+            <div class="input-group input-group-sm">
+              <span class="input-group-addon">PREFIX</span>
+              <input type="text" class="form-control testcase-input" placeholder="e.g)TU000 +" ng-model="userBlock.name_prefix" ng-blur="addUserPrefix(userBlock)">
+            </div><!-- /input-group -->
+          </div>
+          <div class="col-md-2">
+            <div class="input-group input-group-sm">
+              <span class="input-group-addon">User Count</span>
+              <input type="text" class="form-control testcase-input" placeholder="user count" ng-model="userBlock.count" ng-blur="addUsers(userBlock)">
+            </div><!-- /input-group -->
+          </div>
+          <div class="col-md-2">
+            <button type="button" class="btn btn-link btn-xs" ng-click="newUserBlock()">
+              <span class="fa fa-plus" tooltip="new UserBlock"></span>
+            </button>
+            <button type="button" class="btn btn-link btn-xs" ng-click="deleteUserBlock(userBlock)">
+              <span class="fa fa-minus" tooltip="delete UserBlock"></span>
+            </button>
+            <button type="button" class="btn btn-link btn-xs" ng-click="copyUserBlock(userBlock)">
+              <span class="fa fa-copy" tooltip="copy UserBlock"></span>
+            </button>
+            <button type="button" class="btn btn-link btn-xs" ng-hide="userBlock.showDetail" ng-click="unfoldUserBlock(userBlock)">
+              <span class="fa fa-folder-o" tooltip="un-fold UserBlock"></span>
+            </button>
+            <button type="button" class="btn btn-link btn-xs" ng-show="userBlock.showDetail" ng-click="foldUserBlock(userBlock)">
+              <span class="fa fa-folder-open-o" tooltip="fold UserBlock"></span>
+            </button>
+            <button type="button" class="btn btn-link btn-xs" ng-click="saveUserBlock()">
+              <span class="fa fa-save" tooltip="save UserBlock"></span>
+            </button>
+          </div>
+        </div>
+        <div class="row" ng-show="userBlock.showDetail">
+          <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th style="width:2%">#</th>
+                <th ng-repeat="col in userColumns" style="width:10%">
+                  <span ng-show="col.default">{{col.name}}</span>
+                  <input type="text" class="form-control variable-input" tooltip="{{col.name}}" ng-model="col.name" ng-show="!col.default">
+                </th>
+                <th>
+                  <button type="button" class="btn btn-link btn-xs" ng-click="addUserAttribute()">
+                    <span class="fa fa-plus" tooltip="add user column"></span>
+                  </button>
+                  <button type="button" class="btn btn-link btn-xs" ng-click="removeLastUserAttribute()">
+                    <span class="fa fa-minus" tooltip="delete user column"></span>
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="user in userBlock.users track by $index">
+                <th scope="row">{{$index + 1}}</th>
+                <td ng-repeat="col in userColumns">
+                  <input type="text" class="form-control variable-input" placeholder="{{col.tooltip}}" ng-model="user[col.name]">
+                </td>
+                <td>
+                  <button type="button" class="btn btn-link btn-xs" ng-click="newUser(userBlock)">
+                    <span class="fa fa-plus" tooltip="new variable"></span>
+                  </button>
+                  <button type="button" class="btn btn-link btn-xs" ng-click="deleteUser(userBlock, user)">
+                    <span class="fa fa-minus" tooltip="delete variable"></span>
+                  </button>
+                  <button type="button" class="btn btn-link btn-xs" ng-click="copyUser(userBlock, user)">
+                    <span class="fa fa-copy" tooltip="copy variable"></span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </li> <!-- end of a stepBlock -->
+    </ul>
+  </form>
+
+  <div class="panel panel-default">
+    <div class="panel-header">
+      <textarea name="name" rows="8" cols="150">
+        {{userBlocks}}
+
+      </textarea>
+    </div>
+  </div>
+
+</div>

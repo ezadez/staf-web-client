@@ -1,0 +1,21 @@
+<!--sidebar start-->
+<div id="sidebar" class="nav-collapse ">
+  <!-- sidebar menu start -->
+  <ul class="sidebar-menu" id="nav-accordion">
+    <li class="sub-menu" ng-repeat="menu in sidebarMenu">
+      <a href="">
+        <i class="fa fa-desktop"></i>
+        <span>
+          {{menu.name}}
+        </span>
+      </a>
+      <ul class="sub" ng-repeat="subMenu in menu.sub_menus">
+        <li>
+          <a ui-sref="{{subMenu.target}}">{{subMenu.name}}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <!-- sidebar menu end-->
+</div>
+<!--sidebar end-->

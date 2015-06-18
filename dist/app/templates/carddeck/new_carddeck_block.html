@@ -1,0 +1,110 @@
+<div ng-controller="cardDecksController">
+  <error-display></error-display>
+  <form action="" name="cardDeckBlockForm">
+    <ul class="list-group" ng-repeat="cardDeckBlock in cardDeckBlocks track by $index">
+      <li class="list-group-item">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="input-group input-group-sm">
+                  <span class="input-group-addon">Package &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  <input type="text" class="form-control testcase-input" placeholder="cardDeck package" ng-model="cardDeckBlock.package" ng-pattern="validatorRegEx().packageType">
+                </div><!-- /input-group -->
+              </div>
+              <div class="col-md-3">
+                <div class="input-group input-group-sm">
+                  <span class="input-group-addon">CardDeckBlock  id</span>
+                  <input type="text" class="form-control testcase-input" placeholder="cardDeckBlock id" ng-model="cardDeckBlock.id">
+                </div><!-- /input-group -->
+              </div>
+
+              <div class="col-md-2">
+                <new-block-button tooltip="new cardDeck block" func="newCardDeckBlock"></new-block-button>
+
+                <block-button tooltip="delete cardDeck package" func="deleteCardDeckBlock" block="cardDeckBlock" type="blockButtons.delete.class"></block-button>
+
+                <block-button tooltip="copy cardDeck package" func="copyCardDeckBlock" block="cardDeckBlock" type="blockButtons.copy.class"></block-button>
+
+                <block-button tooltip="un-fold cardDeck block" func="unfoldCardDeckBlock" block="cardDeckBlock" type="blockButtons.unfold.class" ng-hide="cardDeckBlock.showDetail"></block-button>
+
+                <block-button tooltip="fold cardDeck package" func="foldCardDeckBlock" block="cardDeckBlock" type="blockButtons.fold.class" ng-show="cardDeckBlock.showDetail"></block-button>
+
+                <block-button tooltip="save cardDeck package" func="saveCardDeckBlock" block="cardDeckBlock" type="blockButtons.save.class"></block-button>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-body" style="margin-top: -10px" ng-show="cardDeckBlock.showDetail">
+            <div class="panel panel-default" ng-repeat="cardDeck in cardDeckBlock.cardDecks">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="input-group input-group-sm">
+                      <span class="input-group-addon">id &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                      <input type="text" class="form-control testcase-input" placeholder="cardDeck id" ng-model="cardDeck.id">
+                    </div><!-- /input-group -->
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group input-group-sm">
+                      <span class="input-group-addon">common cards</span>
+                      <input type="text" class="form-control testcase-input" placeholder="e.g) As, 2c" ng-model="cardDeck.common_cards" ng-pattern="validatorRegEx().cardDecks">
+                    </div><!-- /input-group -->
+                  </div>
+                  <div class="col-md-3">
+                    <new-block-item-button block="cardDeckBlock" func="newCardDeck" tooltip="new cardDeck"></new-block-item-button>
+
+                    <block-item-button func="deleteCardDeck" block="cardDeckBlock" item="$index" type="blockButtons.delete.class" tooltip="delete card deck"></block-item-button>
+
+                    <block-item-button func="copyCardDeck" block="cardDeckBlock" item="$index" type="blockButtons.copy.class" tooltip="copy card deck"></block-item-button>
+
+                    <block-item-button func="unfoldCardDeck" block="cardDeckBlock" item="$index" type="blockButtons.unfold.class" tooltip="un-fold card deck" ng-hide="cardDeck.showDetail"></block-item-button>
+
+                    <block-item-button func="foldCardDeck" block="cardDeckBlock" item="$index" type="blockButtons.fold.class" tooltip="fold card deck" ng-show="cardDeck.showDetail"></block-item-button>
+
+                    <block-item-button func="saveCardDeck" block="cardDeckBlock" item="$index" type="blockButtons.save.class" tooltip="save card deck"></block-item-button>
+
+                  </div>
+                </div>
+              </div>
+              <div class="panel-body" style="margin-top: -10px">
+
+                <div class="row" ng-repeat="seatCard in cardDeck.seatCards" ng-show="cardDeck.showDetail">
+                  <div class="col-md-3">
+                    <div class="input-group input-group-sm">
+                      <span class="input-group-addon">seat</span>
+                      <input type="text" class="form-control testcase-input" placeholder="seat" ng-model="seatCard.seat" ng-pattern="validatorRegEx().onlyDigits">
+                    </div><!-- /input-group -->
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group input-group-sm">
+                      <span class="input-group-addon">seat cards&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                      <input type="text" class="form-control testcase-input" placeholder="e.g) As, 2c" ng-model="seatCard.deck" ng-pattern="validatorRegEx().cardDecks">
+                    </div><!-- /input-group -->
+                  </div>
+                  <div class="col-md-3">
+                    <new-block-item-button block="cardDeck" func="newSeatCard" tooltip="new seat card"></new-block-item-button>
+
+                    <block-item-button func="deleteSeatCard" block="cardDeck" item="$index" type="blockButtons.delete.class" tooltip="delete seat card"></block-item-button>
+
+                    <block-item-button func="copySeatCard" block="cardDeck" item="$index" type="blockButtons.copy.class" tooltip="copy seat card"></block-item-button>
+
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer" style="margin-top: -10px">
+                <card-deck-preview carddeck="cardDeck"></card-deck-preview>
+              </div>
+            </div>
+            <!-- end of a cardDeck -->
+          </div>
+        </div>
+      </li> <!-- end of a cardDeckBlock -->
+    </ul>
+
+    <textarea name="name" rows="8" cols="100">
+    {{cardDeckBlocks}}
+    </textarea>
+  </form>
+</div>

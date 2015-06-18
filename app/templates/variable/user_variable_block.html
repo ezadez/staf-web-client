@@ -1,0 +1,40 @@
+<div class="row" ng-show="variableBlock.type === 'USER-DEFINED'">
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th style="width: 2%;">#</th>
+        <th style="width: 5%;">type</th>
+        <th style="width: 20%;">Name</th>
+        <th style="width: 30%;">Value</th>
+        <th style="width: 10%;"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="variable in variableBlock.variables track by $index">
+        <th scope="row">{{$index + 1}}</th>
+        <td>
+          <select ng-model="variable.type" ng-change="buildVariablePattern(variable)" ng-selected="variableBlock.type" ng-options="type for type in variableTypes" >
+            {{type}}
+          </select>
+        </td>
+        <td>
+          <input type="text" class="form-control variable-input" placeholder="variable name" aria-describedby="basic-addon1" ng-model="variable.name">
+        </td>
+        <td>
+          <input type="text" class="form-control variable-input" placeholder="{{variable.name}}" aria-describedby="basic-addon1" ng-model="variable.value" ng-pattern="variable.pattern">
+        </td>
+        <td>
+          <button type="button" class="btn btn-link btn-xs" ng-click="newVariable(variableBlock)">
+            <span class="fa fa-plus" tooltip="new variable"></span>
+          </button>
+          <button type="button" class="btn btn-link btn-xs" ng-click="deleteVariable(variableBlock, variable)">
+            <span class="fa fa-minus" tooltip="delete variable"></span>
+          </button>
+          <button type="button" class="btn btn-link btn-xs" ng-click="copyVariable(variableBlock, variable)">
+            <span class="fa fa-copy" tooltip="copy variable"></span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

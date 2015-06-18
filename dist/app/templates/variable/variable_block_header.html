@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="input-group input-group-sm">
+      <span class="input-group-addon">Package</span>
+      <input type="text" class="form-control testcase-input" placeholder="variableBlock package" ng-model="variableBlock.package">
+    </div><!-- /input-group -->
+  </div>
+  <div class="col-md-2">
+    <div class="input-group input-group-sm">
+      <span class="input-group-addon">ID</span>
+      <input type="text" class="form-control testcase-input" ng-model="variableBlock.id" placeholder="variableBlock id" ng-pattern="validatorRegEx().allowUnderbarAndDot" ng-required="true">
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+  <div class="col-md-4">
+    <div class="input-group input-group-sm">
+      <label class="radio-inline" ng-repeat="type in variableBlockTypes">
+        <input type="radio" name="inlineRadioOptions_{{variableBlock.id}}" value="{{type}}" ng-model="variableBlock.type">
+        {{type}}
+      </label>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+  <div class="col-md-2">
+    <button type="button" class="btn btn-link btn-xs" ng-click="newVariableBlock()">
+      <span class="fa fa-plus" tooltip="new VariableBlock"></span>
+    </button>
+    <button type="button" class="btn btn-link btn-xs" ng-click="deleteVariableBlock(variableBlock)">
+      <span class="fa fa-minus" tooltip="delete VariableBlock"></span>
+    </button>
+    <button type="button" class="btn btn-link btn-xs" ng-click="copyTestCase(variableBlock)">
+      <span class="fa fa-copy" tooltip="copy VariableBlock"></span>
+    </button>
+    <button type="button" class="btn btn-link btn-xs" ng-hide="variableBlock.showDetail" ng-click="unfoldVariableBlock(variableBlock)">
+      <span class="fa fa-folder-o" tooltip="un-fold VariableBlock"></span>
+    </button>
+    <button type="button" class="btn btn-link btn-xs" ng-show="variableBlock.showDetail" ng-click="foldVariableBlock(variableBlock)">
+      <span class="fa fa-folder-open-o" tooltip="fold VariableBlock"></span>
+    </button>
+    <button type="button" class="btn btn-link btn-xs" ng-click="saveVariableBlock()">
+      <span class="fa fa-save" tooltip="save VariableBlock"></span>
+    </button>
+  </div>
+</div>

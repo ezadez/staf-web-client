@@ -1,0 +1,16 @@
+<tr>
+  <td>{{phase.name}}</td>
+  <td>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <span>cash_game_logins</span> <a href="none"><i class="fa fa-eye"></i></a>
+      </li>
+    </ul>
+    <input type="text" class="form-control testcase-input" placeholder="{{phase.name}} StepBlocks" ng-model="phase.stepBlocks">
+  </td>
+  <td phase-parameter="phase.parameter" phase-name="phase.name">
+  </td>
+  <td rowspan="3" ng-show="$first">
+    <input type="text" class="form-control testcase-input" placeholder="Stage parameter" ng-model="testStage.parameter" ng-pattern="validatorRegEx().parameter">
+  </td>
+</tr>

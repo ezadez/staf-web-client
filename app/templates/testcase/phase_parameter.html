@@ -1,0 +1,12 @@
+<div class="input-group">
+  <span class="input-group-addon">
+    <select ng-model="parameter.type">
+      <option value="text" selected="selected">text</option>
+      <option value="json">json</option>
+      <option value="xml">xml</option>
+    </select>
+  </span>
+
+  <textarea rows="3" cols="20" class="form-control testcase-input" placeholder="{{phaseName}} Parmeter" ng-model="parameter.content" paremater-content="parameter.content" parameter-type="parameter.type
+  "></textarea>
+</div>

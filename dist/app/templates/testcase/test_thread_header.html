@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-2">
+    <div class="input-group input-group-sm">
+      <span class="input-group-addon">Thread ID &nbsp;&nbsp;&nbsp;</span>
+      <input type="text" class="form-control testcase-input" placeholder="Thread Id" ng-model="testThread.id" ng-pattern="validatorRegEx().notAllowSpecialChars" ng-required="true">
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+  <div class="col-md-8">
+  </div>
+  <div class="col-md-2">
+    <button type="button" class="btn btn-link btn-xs" ng-click="newTestThread(testCase)">
+      <span class="fa fa-plus" tooltip="new TestThread"></span>
+    </button>
+    <button type="button" class="btn btn-link btn-xs" ng-click="deleteTestThread(testCase, testThread)">
+      <span class="fa fa-minus" tooltip="delete TestThread"></span>
+    </button>
+    <button type="button" class="btn btn-link btn-xs" ng-click="copyTestThread(testCase, testThread)">
+      <span class="fa fa-copy" tooltip="copy TestThread"></span>
+    </button>
+  </div>
+</div>

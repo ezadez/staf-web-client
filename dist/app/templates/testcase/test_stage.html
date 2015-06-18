@@ -1,0 +1,25 @@
+<div class="col-md-10">
+  <table class="table table-bordered" id="tblNewTestCase">
+  <thead>
+    <tr>
+      <th style="width:5%">Phase</th>
+      <th style="width:30%">StepBlocks (seq: {{testStage.seq}})</th>
+      <th style="width:15%">Phase Parmeters</th>
+      <th style="width:15%">Stage parameter</th>
+    </tr>
+  </thead>
+  <tbody test-phases>  <!-- test phases in a testStage -->
+  </tbody>
+</table>
+</div>
+<div class="col-md-2">
+  <button type="button" class="btn btn-link btn-xs" ng-click="newTestStage(testThread)">
+    <span class="fa fa-plus" tooltip="new TestStage"></span>
+  </button>
+  <button type="button" class="btn btn-link btn-xs" ng-click="deleteTestStage(testThread, testStage)">
+    <span class="fa fa-minus" tooltip="delete TestStage"></span>
+  </button>
+  <button type="button" class="btn btn-link btn-xs">
+    <span class="fa fa-copy" tooltip="copy TestStage" ng-click="copyTestStage(testThread, testStage)"></span>
+  </button>
+</div>

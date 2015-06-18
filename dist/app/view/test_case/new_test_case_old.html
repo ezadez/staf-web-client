@@ -1,0 +1,172 @@
+<!--
+TestCase 생성 시 grid는 별로 좋은 것 같지 않다.
+-->
+<style>
+  .testcase-input {
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+    background: transparent;
+  }
+  .testcase-input.ng-invalid {
+    color:white;
+    background: red;
+  }
+
+</style>
+
+<div ng-controller="testCaseController">
+  <!--
+  <div id="grid1" ui-grid="testCaseGridOpt" ui-grid-edit ui-grid-cellNav class="grid"></div>
+  -->
+  <div class="row">
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="">TestCase</a></li>
+        <li role="presentation"><a href="">Variables</a></li>
+        <li role="presentation"><a href="">Users</a></li>
+      </ul>
+      <!-- TestCase input section -->
+      <p></p>
+      <ul class="list-group" ng-repeat="testCase in testCases">
+        <li class="list-group-item">
+          <form action="">
+            <div class="row">
+              <div class="col-md-2">
+                <div class="input-group input-group-sm">
+                  <span class="input-group-addon" id="sizing-addon1">TestCase ID</span>
+                  <input type="text" class="form-control testcase-input" ng-model="testCase.id" placeholder="testCase id" ng-pattern="validatorRegEx().notAllowSpecialChars" >
+                </div><!-- /input-group -->
+              </div><!-- /.col-lg-6 -->
+              <div class="col-md-9">
+                <div class="input-group input-group-sm">
+                  <span class="input-group-addon" id="sizing-addon1">Assertion</span>
+                  <input type="text" class="form-control testcase-input" placeholder="assertion" ng-model="testCase.assertion" >
+                </div><!-- /input-group -->
+              </div><!-- /.col-lg-6 -->
+              <div class="col-md-1">
+                <a href="none"><span class="fa fa-plus" tooltip="new TestCase"></span>&nbsp;&nbsp;</a>
+                <a href="none"><span class="fa fa-minus" tooltip="delete TestCase"></span>&nbsp;&nbsp;</a>
+                <a href="none"><span class="fa fa-copy" tooltip="copy TestCase"></span>&nbsp;&nbsp;</a>
+              </div>
+            </div>
+
+            <!-- TestThread & TestStage Wrpper start -->
+            <div ng-repeat="testThread in testCase.Threads">
+              <!-- TestThread start -->
+              <div class="row">
+                <div class="col-md-2">
+                  <div class="input-group input-group-sm">
+                    <span class="input-group-addon" id="sizing-addon1">Thread ID &nbsp;&nbsp;&nbsp;</span>
+                    <input type="text" class="form-control testcase-input" placeholder="Thread Id" ng-model="testThread.id" ng-pattern="validatorRegEx().notAllowSpecialChars" >
+                  </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+                <div class="col-md-9">
+                </div>
+                <div class="col-md-1">
+                  <a href="none"><span class="fa fa-plus" tooltip="new TestThread"></span>&nbsp;&nbsp;</a>
+                  <a href="none"><span class="fa fa-minus" tooltip="delete TestThread"></span>&nbsp;&nbsp;</a>
+                  <a href="none"><span class="fa fa-copy" tooltip="copy TestThread"></span>&nbsp;&nbsp;</a>
+                </div>
+              </div>
+              <!-- TestThread end -->
+              <!-- TestStage start -->
+              <div class="row" ng-repeat="testStage in testThread.Stages">
+                <div class="col-md-11">
+                  <table class="table table-bordered" id="tblNewTestCase">
+                  <thead>
+                    <tr>
+                      <th style="width:5%">Phase</th>
+                      <th style="width:30%">StepBlocks</th>
+                      <th style="width:15%">Phase Parmeters</th>
+                      <th style="width:15%">Stage parameter</th>
+                    </tr>
+                  </thead>
+                  <tbody ng-repeat="thread in testCase.Threads">
+                    <tr>
+                      <td>setUp</td>
+                      <td>
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <span>cash_game_logins</span> <a href="none"><i class="fa fa-eye"></i></a>
+                          </li>
+                        </ul>
+                        <input type="text" class="form-control testcase-input" placeholder="setUp StepBlocks" ng-model="testStage.Phases[0].stepBlocks">
+                      </td>
+                      <td>
+                        <!-- //TODO: phase별 parameter 입력 부분을 directive로 뺄것!! -->
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <input type="checkbox" tooltip="use json directly" ng-model="testStage.Phases[0].parameter.isJson" aria-label="Checkbox for following text input">
+                          </span>
+                          <textarea rows="5" cols="20" class="form-control testcase-input" placeholder="setUp Parmeter" ng-show="testStage.Phases[0].parameter.isJson" ng-model="testStage.Phases[0].parameter.content" paremater-content="testStage.Phases[0].parameter.content" paremater-is-json="testStage.Phases[0].parameter.isJson"></textarea>
+                          <input type="text" class="form-control testcase-input" placeholder="setUp Parmeter" ng-hide="testStage.Phases[0].parameter.isJson" ng-model="testStage.Phases[0].parameter.content" paremater-content="testStage.Phases[0].parameter.content" paremater-is-json="testStage.Phases[0].parameter.isJson" >
+                        </div>
+
+                      </td>
+                      <td rowspan="3">
+                        <input type="text" class="form-control testcase-input" placeholder="Stage parameter" ng-model="testStage.parameter" ng-pattern="validatorRegEx().parameter">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>testTarget</td>
+                      <td>
+                        <input type="text" class="form-control testcase-input" placeholder="testTarget StepBlocks" ng-model="testStage.Phases[1].stepBlocks">
+                      </td>
+                      <td>
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <input type="checkbox" tooltip="use json directly" ng-model="testStage.Phases[1].parameter.isJson" aria-label="Checkbox for following text input">
+                          </span>
+                          <textarea rows="5" cols="20" class="form-control testcase-input" placeholder="testTarget Parmeter" ng-show="testStage.Phases[1].parameter.isJson" ng-model="testStage.Phases[1].parameter.content" paremater-content="testStage.Phases[1].parameter.content" paremater-is-json="testStage.Phases[1].parameter.isJson"></textarea>
+                          <input type="text" class="form-control testcase-input" placeholder="testTarget Parmeter" ng-hide="testStage.Phases[1].parameter.isJson" ng-model="testStage.Phases[1].parameter.content" paremater-content="testStage.Phases[1].parameter.content" paremater-is-json="testStage.Phases[1].parameter.isJson" >
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr>
+                      <td>tearDown</td>
+                      <td>
+                        <input type="text" class="form-control testcase-input" placeholder="tearDown StepBlocks" ng-model="testStage.Phases[2].stepBlocks">
+                      </td>
+                      <td>
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <input type="checkbox" tooltip="use json directly" ng-model="testStage.Phases[2].parameter.isJson" aria-label="Checkbox for following text input">
+                          </span>
+                          <textarea rows="5" cols="20" class="form-control testcase-input" placeholder="tearDown Parmeter" ng-show="testStage.Phases[2].parameter.isJson" ng-model="testStage.Phases[2].parameter.content" paremater-content="testStage.Phases[2].parameter.content" paremater-is-json="testStage.Phases[2].parameter.isJson"></textarea>
+                          <input type="text" class="form-control testcase-input" placeholder="tearDown Parmeter" ng-hide="testStage.Phases[2].parameter.isJson" ng-model="testStage.Phases[2].parameter.content" paremater-content="testStage.Phases[2].parameter.content" paremater-is-json="testStage.Phases[2].parameter.isJson" >
+                        </div>
+                      </td>
+
+                    </tr>
+                  </tbody>
+                </table>
+                </div>
+                <div class="col-md-1">
+                  <a href="none"><span class="fa fa-plus" tooltip="new TestStage"></span>&nbsp;&nbsp;</a>
+                  <a href="none"><span class="fa fa-minus" tooltip="delete TestStage"></span>&nbsp;&nbsp;</a>
+                  <a href="none"><span class="fa fa-copy" tooltip="copy TestStage"></span>&nbsp;&nbsp;</a>
+                </div>
+              </div>
+              <!-- TestStage end -->
+            </div>
+            <!-- TestThread & TestStage Wrpper end -->
+          </form>
+        </li>
+      </ul>
+      <div class="panel panel-default">
+        <div class="panel-header">
+          {{testCases}}
+        </div>
+      </div>
+      <!-- Variables input section -->
+      <div class="container">
+
+      </div>
+      <!-- Users input section -->
+      <div class="container">
+
+      </div>
+
+
+  </div>
+</div>

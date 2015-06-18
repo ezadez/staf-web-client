@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
+  <title>staf-web-client</title>
+  <!--external css-->
+  <link rel="stylesheet" href="../../libs/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="../../libs/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="../../assets/lineicons/style.css">
+
+  <!-- Custom styles for this template -->
+  <link href="../../assets/css/style.css" rel="stylesheet">
+  <link href="../../assets/css/style-responsive.css" rel="stylesheet">
+  <!--
+  //TODO : input, ng-invalid를 공통 style로 뺄것!!
+  -->
+
+</head>
+
+<body ng-app="staf-web-client">
+  <section id="container" ng-controller="menuController">
+    <!--header start-->
+    <header class="header black-bg">
+      <div class="sidebar-toggle-box">
+        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+      </div>
+      <h3 class="centered">staf-web-client</h3>
+      <!--  notification end -->
+      </div>
+      <div class="top-menu">
+
+      </div>
+    </header>
+    <!--header end-->
+    <!--sidebar start-->
+    <aside>
+      <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start -->
+        <ul class="sidebar-menu" id="nav-accordion">
+          <li class="sub-menu" ng-repeat="menu in menus">
+            <a href="javascript:;">
+              <i class="fa fa-desktop"></i>
+              <span>{{menu.name}}</span>
+            </a>
+            <ul class="sub">
+              <li ng-repeat="subMenu in menu.sub_menus">
+                <!-- <a href="{{subMenu.target}}">{{subMenu.name}}</a> qweqwer-->
+                <a ui-sref="{{subMenu.target}}">{{subMenu.name}}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <!-- sidebar menu end-->
+      </div>
+    </aside>
+    <!--sidebar end-->
+
+    <section id="main-content">
+      <section class="wrapper" ui-view>
+      </section>
+    </section>
+
+  </section>
+  <script type="text/javascript" src="../../libs/angular/angular.min.js"></script>
+  <script type="text/javascript" src="../../libs/angular-route/angular-route.min.js"></script>
+  <script type="text/javascript" src="../../libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script type="text/javascript" src="../../libs/angular-ui-grid/ui-grid.min.js"></script>
+  <script type="text/javascript" src="../../libs/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script type="text/javascript" src="../../libs/lodash/lodash.min.js"></script>
+  <!--
+  <script type="text/javascript" src="../../libs/underscore.string/dist/underscore.string.min.js"></script>
+  -->
+  <script type="text/javascript" src="../../libs/angular-underscore/angular-underscore.min.js"></script>
+  <script type="text/javascript" src="../../libs/angular-underscore-string/angular-underscore-string.js"></script>
+  <script type="text/javascript" src="../../libs/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../../libs/jquery.cookie/jquery.cookie.js"></script>
+  <script type="text/javascript" src="../../libs/dcjqaccordion/js/jquery.dcjqaccordion.2.7.min.js"></script>
+  <script type="text/javascript" src="../../libs/jquery.nicescroll/jquery.nicescroll.min.js"></script>
+  <script type="text/javascript" src="../../libs/jquery.scrollTo/jquery.scrollTo.min.js"></script>
+  <script type="text/javascript" src="../../libs/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../js/common-scripts.js"></script>
+  <script type="text/javascript" src="../js/app.js"></script>
+
+  <script type="text/javascript" src="../js/controllers.js"></script>
+  <script type="text/javascript" src="../js/directives.js"></script>
+  <script type="text/javascript" src="../js/services.js"></script>
+
+</body>
+
+</html>

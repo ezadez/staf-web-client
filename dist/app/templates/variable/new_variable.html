@@ -1,0 +1,19 @@
+<div ng-controller="variableController">
+  <div class="alert alert-warning fade-animation" role="alert" ng-show="error.length > 0">
+    <strong>Warning!</strong> {{error}}
+  </div>
+  <div class="row">
+    <form action="">
+      <ul class="list-group" ng-repeat="variableBlock in variableBlocks track by $index">
+        <li class="list-group-item">
+          <variable-block-header></variable-block-header>
+          <variable-block-body></variable-block-body>
+        </li>
+      </ul>
+
+      <textarea name="" id="" cols="150" rows="10">
+        {{variableBlocks}}
+      </textarea>
+    </form>
+  </div>
+</div>

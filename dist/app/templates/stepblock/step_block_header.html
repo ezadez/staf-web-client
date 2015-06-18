@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="input-group input-group-sm">
+      <span class="input-group-addon">Package</span>
+      <input type="text" class="form-control testcase-input" placeholder="stepBlock package" ng-model="stepBlock.package">
+    </div><!-- /input-group -->
+  </div>
+  <div class="col-md-2">
+    <div class="input-group input-group-sm">
+      <span class="input-group-addon" id="sizing-addon1">ID</span>
+      <input type="text" class="form-control testcase-input" ng-model="stepBlock.id" ng-pattern="validatorRegEx().allowUnderbarAndDot">
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+  <div class="col-md-5">
+    <div class="input-group input-group-sm">
+      <span class="input-group-addon" id="sizing-addon1">Parameter</span>
+      <!-- //TODO check there is any filter that returns array -->
+      <input type="text" class="form-control testcase-input" placeholder="e.g) param1, param2" ng-model="stepBlock.parameters" ng-pattern="validatorRegEx().stepBlockParameters">
+    </div><!-- /input-group -->
+  </div>
+  <div class="col-md-2">
+    
+    <new-block-button tooltip="new stepBlock" func="newStepBlock"></new-block-button>
+
+    <block-button tooltip="delete stepBlock" func="deleteStepBlock" block="stepBlock" type="blockButtons.delete.class"></block-button>
+
+    <block-button tooltip="copy stepBlock" func="copyStepBlock" block="stepBlock" type="blockButtons.copy.class"></block-button>
+
+    <block-button tooltip="un-fold stepBlock" func="unfoldStepBlock" block="stepBlock" type="blockButtons.unfold.class" ng-hide="stepBlock.showDetail"></block-button>
+
+    <block-button tooltip="fold stepBlock" func="foldStepBlock" block="stepBlock" type="blockButtons.fold.class" ng-show="stepBlock.showDetail"></block-button>
+
+    <block-button tooltip="save stepBlock" func="saveStepBlock" block="stepBlock" type="blockButtons.save.class"></block-button>
+
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="row" ng-show="variableBlock.type === 'SYSTEM'">
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th style="width: 10%;">Name</th>
+        <th style="width: 40%;">Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="variable in variableBlock.system_variables track by $index| filter: !deprecated">
+        <td><span class="variable-label">{{variable.name}}</span></td>
+        <td>
+          <input type="text" class="form-control variable-input" placeholder="{{variable.name}}" aria-describedby="basic-addon1" ng-model="variable.value" ng-pattern="variable.pattern">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div> <!-- end of system variable block -->

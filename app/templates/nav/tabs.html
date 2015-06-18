@@ -1,0 +1,14 @@
+<!--
+//TODO: 각 메뉴 별로 보여질 tab을 조정을 할 것인지 아닌지 결정해야함
+-->
+<ul class="nav nav-tabs">
+  <li role="presentation" ng-repeat="tab in tabs" ng-class="{active:isActiveTab(tab.url)}">
+    <!--
+    <a href="" ng-click="moveTab(tab)">{{tab.title}}</a>
+    -->
+    <button type="button" class="btn btn-link" ng-click="moveTab(tab)">
+      {{tab.title}}
+    </button>
+
+  </li>
+</ul>

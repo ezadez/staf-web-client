@@ -1,0 +1,59 @@
+<table class="table table-striped table-bordered table-condensed">
+  <thead>
+    <tr>
+      <th style="width: 5%;">seq</th>
+      <th style="width: 10%;">user</th>
+      <th style="width: 7%;">action</th>
+      <th style="width: 8%;">target</th>
+      <th style="width: 8%;">template id</th>
+      <th style="width: 12%;">parameter</th>
+      <th style="width: 4%;">delay</th>
+      <th style="width: 4%;">timeout</th>
+      <th style="width: 8%;">comment</th>
+      <th style="width: 6%;"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="step in stepBlock.steps track by step.seq">
+      <td>
+        <input type="text" class="form-control testcase-input" ng-model="step.seq" ng-pattern="validatorRegEx().stepSeq">
+      </td>
+      <td>
+        <textarea rows="3" cols="20" class="form-control testcase-input" ng-model="step.user" ng-pattern="validatorRegEx().variableType" typeahead="user for user in getAvailableUsers($viewValue) | filter:$viewValue"></textarea>
+      </td>
+      <td>
+        <textarea rows="3" cols="20" class="form-control testcase-input" ng-model="step.action" ng-pattern="validatorRegEx().allowUnderbarAndDot" typeahead="actionName for actionName in getActionNames($viewValue) | filter:$viewValue"></textarea>
+      </td>
+      <td>
+        <textarea rows="3" cols="20" class="form-control testcase-input" ng-model="step.target" typeahead="target for target in getAvailableTargets($viewValue) | filter:$viewValue"></textarea>
+
+      </td>
+      <td>
+        <textarea rows="3" cols="20" class="form-control testcase-input" ng-model="step.templateId" typeahead="templateId for templateId in getTemplateIds($viewValue) | filter:$viewValue"></textarea>
+      </td>
+      <td parameter="step.parameter" phase-name="">
+
+      </td>
+      <td>
+        <input type="text" class="form-control testcase-input" ng-model="step.delay" ng-pattern="validatorRegEx().onlyDigits" tooltip="only number, milli-sec" tooltip-trigger="focus">
+      </td>
+      <td>
+        <input type="text" class="form-control testcase-input" ng-model="step.timeout" ng-pattern="validatorRegEx().onlyDigits" tooltip="only number, seconds" tooltip-trigger="focus">
+      </td>
+      <td>
+        <textarea rows="3" cols="20" class="form-control testcase-input" ng-model="step.comment"></textarea>
+      </td>
+      <td>
+        <button type="button" class="btn btn-link btn-xs" ng-click="newStep(stepBlock)">
+          <span class="fa fa-plus" tooltip="new step"></span>
+        </button>
+        <button type="button" class="btn btn-link btn-xs" ng-click="deleteStep(stepBlock, step)">
+          <span class="fa fa-minus" tooltip="delete step"></span>
+        </button>
+        <button type="button" class="btn btn-link btn-xs" ng-click="copyStep(stepBlock, step)">
+          <span class="fa fa-copy" tooltip="copy step"></span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
